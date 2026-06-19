@@ -1,0 +1,1188 @@
+/* --- Basis (Mobile) --- */
+:root {
+    --bg-color: #f5f5f7;
+    --text-color: #1d1d1f;
+    --accent-color: #0066cc;
+    --creme: #cdaa92;
+    --dark-creme: #a47764;
+    /*Button*/
+    --white: #ffffff;
+    --shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+    --border-radius: 30px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-padding {
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.creme {
+    background-color: var(--creme);
+}
+
+.dark_creme {
+    background-color: var(--dark-creme);
+}
+
+/* --- Typografie --- */
+h1 {
+    font-size: 3rem;
+    letter-spacing: -0.05em;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.h2_carousel {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 1.1rem;
+    color: #86868b;
+}
+
+.miniheader_light {
+    color: var(--white);
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.miniheader_dark {
+    color: var(--text-color);
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.caption_light {
+    color: var(--white);
+    padding-bottom: 5%;
+}
+
+/* --- Buttons "Kaufen" --- */
+.btn {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    margin: 3rem;
+    cursor: pointer;
+
+}
+
+.btn:hover {
+    background-color: #005bb5;
+}
+
+.btn-large {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 30px;
+    margin: 3rem;
+}
+
+/* =========================================
+   Header-Menü Navigation (Mobile)
+   ========================================= */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: rgba(29, 29, 31, 0.98);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+/* Container für die rechten Icons */
+.nav-icons-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* Abstand zwischen Lupe und Einkaufskorb */
+    margin-left: auto;
+    /* Schiebt die Icons automatisch nach rechts */
+    z-index: 1001;
+    /* Sorgt dafür, dass die Icons anklickbar bleiben */
+}
+
+/* Verhindert, dass das Logo-Link-Verhalten das Layout stört */
+.nav-logo-link {
+    display: flex;
+    align-items: center;
+    z-index: 1001;
+}
+
+.logo {
+    width: 15px;
+    height: auto;
+    /* Zwingt Safari, das Seitenverhältnis fix zu berechnen */
+    display: block;
+    /* Verhindert das Kollabieren im Flex-Layout */
+
+}
+
+.search {
+    width: 20px;
+    filter: invert(100%);
+    display: block;
+}
+
+.bag {
+    width: 25px;
+    filter: invert(100%);
+    display: block;
+}
+
+.nav-links {
+    position: absolute;
+    right: 0px;
+    height: 100vh;
+    top: 60px;
+    background-color: #1d1d1f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in;
+    list-style: none;
+    height: calc(100vh - 60px);
+    /* Bildschirmhöhe MINUS die 60px von der Navbar */
+    overflow-y: auto;
+    /* Erlaubt das Scrollen NUR innerhalb des Menüs */
+}
+
+.nav-links li {
+    margin: 1.5rem 0;
+}
+
+.nav-links a {
+    color: #f5f5f7;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.nav-active {
+    transform: translateX(0%);
+}
+
+.burger {
+    display: block;
+    cursor: pointer;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: var(--white);
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    /* Stapelt Bild und Text untereinander */
+    margin-top: 55px;
+    /* Platz für die fixierte Navigationsleiste */
+    background-color: var(--bg-color);
+}
+
+/* Das Teaserbild wird auf dem Handy als eigenständiger, oberer Block dargestellt */
+.hero::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100vh;
+    /* Das Bild nimmt auf dem Handy die halbe Bildschirmhöhe ein */
+    background-image: url('/Bilder/frontal.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.hero_family {
+    display: flex;
+    flex-direction: column;
+    /* Stapelt Bild und Text untereinander */
+    margin-top: 55px;
+    /* Platz für die fixierte Navigationsleiste */
+    background-color: var(--bg-color);
+}
+
+/* Das Teaserbild wird auf dem Handy als eigenständiger, oberer Block dargestellt */
+.hero_family::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100vh;
+    /* Das Bild nimmt auf dem Handy die halbe Bildschirmhöhe ein */
+    background-image: url('/Bilder/family_teaser_mobile.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+/* Der Textbereich rutscht automatisch unter das Bild */
+.hero-content {
+    text-align: center;
+    padding: 3rem 20px;
+    background-color: var(--bg-color);
+    /* Verhält sich wie eine neue, saubere Section */
+}
+
+.whitespace {
+    height: 29.5vh;
+    /*= gleiche Höhe wie die anderen Abschnitte, wo Text drin ist*/
+}
+
+.space_left {
+    /*Abstand von links für h1-Elemente*/
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin-bottom: 0;
+    /*damit kein weißer Streifen zwischen Titel und drei Containern*/
+}
+
+.space_left_right_bottom {
+    padding-left: 18%;
+    padding-right: 18%;
+    padding-bottom: 5%;
+}
+
+.space_top_bottom {
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.closer_look {
+    background-color: #1D1D1F;
+    color: var(--white);
+}
+
+/* 1. Die Hauptsektion vorbereiten */
+.stats {
+    position: relative;
+    /* WICHTIG: Erlaubt dem ::before-Element, sich hieran auszurichten */
+    min-height: 100vh;
+    /* Sorgt dafür, dass die Sektion mindestens den Bildschirm füllt */
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    overflow: hidden;
+    /* Verhindert, dass das skalierte Bild aus der Sektion herausragt */
+}
+
+/* 2. Das Pseudoelement für das Hintergrundbild einrichten */
+.stats::before {
+    content: "";
+    /* ERFORDERLICH: Aktiviert das Pseudoelement überhaupt erst */
+
+    /* Das Bild über die komplette Fläche der .stats-Sektion spannen */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* Das Bild einbinden und skalieren */
+    background-image: url("/Bilder/von oben quer.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    /* Transparenz und Bildebenen-Anordnung */
+    opacity: 0.15;
+    /* Transparenz des Bildes */
+    z-index: 1;
+    /* Schiebt das Bild auf Ebene 1 */
+}
+
+/* Den Text in Sicherheit bringen, damit er VOR dem Bild liegt */
+.stats .container {
+    position: relative;
+    z-index: 2;
+    /* Liegt mit Ebene 2 über dem Bild (z-index: 1) und bleibt voll lesbar */
+}
+
+.stats-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+    /*Lücken zwischen einzelnen Stats voneinander, 5vh*/
+    margin-top: 3rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
+.features-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    /*Lücken zwischen einzelnen Stats voneinander, vorher 5vh*/
+    padding: 10% 20px;
+    /*oben-unten / links-rechts 20px*/
+    /* Optional: Damit die Karten am Handyrand nicht anstoßen */
+}
+
+.feature-card {
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    position: relative;
+    padding: 14px 20px;
+    background: #ffffffb1;
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    text-align: left;
+
+    /* Dieser sanfte Übergang sorgt dafür, dass das Hovern flüssig aussieht */
+    transition: all 0.3s ease;
+
+    width: 100%;
+    /* Nimmt auf Mobile die volle Displaybreite ein */
+    max-width: 100%;
+    /* Verhindert das Herausragen */
+    box-sizing: border-box;
+}
+
+.feature-card:hover {
+    background: rgba(255, 255, 255, 0.35);
+    /* Wird beim Hovern etwas heller/sichtbarer */
+    transform: translateY(-5px);
+    /* Schiebt die Karte leicht nach oben */
+    cursor: pointer;
+    /* Zeigt den Zeigefinger an */
+
+    /* Macht den Schatten intensiver für einen räumlichen "Anheben"-Effekt */
+    box-shadow:
+        0 12px 20px -2px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Abstand zwischen Überschrift und Fließtext in der Karte */
+.feature-card h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.stat-item .number {
+    display: block;
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--text-color);
+    font-variant-numeric: tabular-nums;
+    /*einheitliche Zahlengröße, damit Container nicht "zittern" oder verschieben während dem aufzählen*/
+    width: 140px;
+    /* Festes Gehäuse für die Zahl (breit genug für 3 Ziffern) */
+    margin: 0 auto;
+    /* Zentriert die Zahl innerhalb ihres stat-items */
+}
+
+/* --- Hintergrundbild unter: Performance bis aufs Äußerste. --- */
+.side {
+    width: 100%;
+    overflow: hidden;
+    /* Verhindert unschöne Scrollbalken, falls das Bild verzerrt */
+}
+
+.side img {
+    width: 100%;
+    height: auto;
+    /* Behält das Seitenverhältnis bei */
+    display: block;
+    /* Entfernt den standardmäßigen kleinen Whitespace unter Bildern */
+    object-fit: cover;
+    /* Schneidet das Bild sauber zu, falls Höhenbegrenzungen ins Spiel kommen */
+}
+
+/*Part unter: "Sieh es dir genauer an."*/
+.flex-spalten {
+    background-color: var(--white);
+    display: flex;
+    /* Aktiviert das Flexbox-Layout */
+    gap: 20px;
+    /* Abstand zwischen den Spalten */
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    /* Spalten untereinander anordnen */
+}
+
+.spalte-rechts img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Füllt den Bereich aus, ohne das Bild zu verzerren */
+    object-position: center;
+    /* Zentriert das Bild im Container */
+    padding-bottom: 15%;
+}
+
+.btn-links {
+    display: flex;
+    flex-direction: column;
+
+    text-decoration: none;
+    border: none;
+    margin: 3vh;
+    cursor: pointer;
+
+    /* Grundlegendes Layout */
+    position: relative;
+    padding: 14px 50px;
+    /* letztes=Breite Button*/
+    color: var(--text-color);
+    cursor: pointer;
+
+    /* Hintergrund und Unschärfe */
+    background: rgba(215, 215, 215, 0.239);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+
+    /* Schatten für Tiefe */
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+
+    /* Sanfter Übergang bei Hover */
+    transition: all 0.3s ease;
+}
+
+.icon-button {
+    display: inline-flex !important;
+    /* Erzwingt das Flexbox-Layout */
+    flex-direction: row !important;
+    /* Zwingt Icon und Text nebeneinander */
+    gap: 8px;
+    /* Abstand zwischen Plus und Text */
+}
+
+.icon-button svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.icaps {
+    background-color: #a47764;
+}
+
+/* Container für die Kapsel-Präsentation */
+.icaps-container {
+    width: 100%;
+    background-color: var(--bg-color);
+    /* Sorgt für den sauberen Apple-Hintergrund */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Das eigentliche Bild skaliert jetzt automatisch perfekt mit */
+.icaps-container picture,
+.icaps-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* --- Animationen --- */
+.btn-links:hover {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow:
+        0 8px 12px -1px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.footer1 {
+    background-color: rgba(134, 134, 134, 0.2);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+}
+
+.footer2 {
+    text-align: center;
+    background-color: rgba(29, 29, 31, 0.98);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s ease-in;
+    list-style: none;
+    /*damit keine Aufzählungszeichen*/
+    justify-content: space-between;
+    align-items: center;
+    padding: 5rem 0%;
+    backdrop-filter: blur(10px);
+}
+
+.footer2 ul {
+    display: flex;
+    flex-direction: column;
+    /* Ordnet die Elemente nebeneinander an */
+    flex-wrap: wrap;
+    /* Erlaubt Zeilenumbrüche, wenn der Bildschirm zu klein ist */
+    justify-content: center;
+    /* Zentriert die Links horizontal */
+    align-items: center;
+    /* Zentriert die Links vertikal */
+    gap: 1rem;
+    /* Erzeugt einen gleichmäßigen Abstand zwischen den Wörtern */
+}
+
+.footer2 li {
+    margin: 0;
+    font-size: 1.1rem;
+    /*kein Abstand zwischen den Elementen*/
+}
+
+.footer2 a {
+    color: #f5f5f7;
+    /* Grundfarbe (hell) */
+    text-decoration: none;
+    opacity: 0.7;
+    /* Reduzierte Deckkraft lässt es grau wirken */
+    transition: opacity 0.3s ease, color 0.3s ease;
+    /* Sorgt für das weiche Ein- und Ausblenden */
+}
+
+.footer2 a:hover {
+    opacity: 1;
+    /* Volle Deckkraft */
+    color: #ffffff;
+    /* text wird beim hovern weiß */
+}
+
+/* =========================================
+   Highlights Navigation Gallerie
+   ========================================= */
+.carousel-shell {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    /* Breite begrenzen */
+    overflow: hidden;
+    /* Alles, was rechts rausragt, wird für das restliche Layout unsichtbar */
+}
+
+.carousel-nav {
+    display: none;
+    border: none;
+    background: #111;
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 30px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+}
+
+.carousel {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 70%;
+    gap: 30px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 4px;
+    padding-left: 10%;
+    padding-right: 10%;
+    scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.card {
+    position: relative;
+    border-radius: 30px;
+    overflow: hidden;
+    background: #eee;
+    scroll-snap-align: center;
+    box-shadow: var(--shadow);
+}
+
+.card img {
+    width: 100%;
+    /* Bild passt sich dem Block an */
+    height: 100%;
+    object-fit: cover;
+    /* Optional: Zuschneiden, falls es das Seitenverhältnis verzieht */
+    align-items: center;
+    border-radius: 30px;
+    justify-content: center;
+    /* Horizontale Zentrierung */
+    align-items: center;
+    /* Vertikale Zentrierung */
+}
+
+.card-overlay {
+    position: absolute;
+    inset: auto 0 0 0;
+    /*Bild Beschriftung unten*/
+    padding: 20px;
+    /*Schattengröße*/
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .45));
+    color: var(--white);
+}
+
+.dots {
+    display: flex;
+    justify-content: center;
+    gap: 20%;
+    /*Lücke zwischen Punkten*/
+    margin-top: 2rem;
+    background-color: rgba(17, 17, 17, .25);
+    border-radius: 30px;
+    margin: 2rem 35%;
+    /*Hintergrund dots*/
+    padding: 1rem;
+
+
+    /* Transparenter Hintergrund, damit Glass-Effekt */
+    background: rgba(29, 29, 31, 0.95);
+    /* Unschärfe-Effekt */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    /* Wichtig für ältere Safari-Browser */
+    /* Helle Kanten simulieren das Licht auf echtem Glas */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /*Schatten*/
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Grundzustand der Punkte */
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 30px;
+    border: none;
+    background: rgba(255, 255, 255, 0.3);
+    /* Leicht transparenter Hintergrund */
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    /* Verhindert, dass der Ladebalken ausbricht */
+    transition: width 0.3s ease;
+}
+
+/* Wenn der Punkt aktiv ist, wird er breiter (Kapsel-Form) */
+.dot.active {
+    background: rgba(255, 255, 255, 0.3);
+    /* Gleicher Hintergrund wie inaktiv */
+    width: 40px;
+    /* Breiter für den Ladebalken (vorher 28px) */
+}
+
+/* Der eigentliche Ladebalken im aktiven Punkt */
+.dot.active::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    /* Startet bei 0% Breite */
+    background: #ffffff;
+    /* Farbe des Ladebalkens (reines Weiß) */
+    border-radius: 30px;
+
+    /* Ruft die Animation auf: 6 Sekunden lang, linear, füllt die Breite */
+    animation: dotProgress 6000ms linear forwards;
+}
+
+/* Die Animation, die die Breite von 0 auf 100% zieht */
+@keyframes dotProgress {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+.spalte-links {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+
+    /* Zentriert die Buttons mobil untereinander */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Verhindert das Scrollen der Hauptseite , wenn Burgermenu geöffnet*/
+.no-scroll {
+    overflow: hidden;
+}
+
+/* Container für die Feature-Pakete */
+.feature-item {
+    width: 100%;
+    max-width: 400px;
+    /* Begrenzt die Breite analog zum Apple-Look */
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Wir setzen die Ränder des Buttons zurück, da der Abstand nun über den Container geregelt wird */
+.feature-item .btn-links {
+    margin: 0 !important;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+/* Das versteckte Textfeld im Apple-Look (Dunkelgrau abgerundet) */
+.feature-text {
+    max-height: 0;
+    /* Standardmäßig geschlossen */
+    overflow: hidden;
+    /* Schneidet den Text ab, wenn geschlossen */
+    opacity: 0;
+    /* Unsichtbar */
+    transition: max-height 1s cubic-bezier(0.15, 0.05, 0.15, 1), opacity 1s ease;
+
+    /* Optik der Apple-Infobox */
+    background: var(--text-color);
+    border-radius: 30px;
+    margin-top: 8px;
+}
+
+/* Der Text innerhalb der Box bekommt ein eigenes Padding, damit das Aufklappen nicht ruckelt */
+.feature-text p {
+    padding: 15px 20px;
+    font-size: 0.95rem;
+    color: #f5f5f7;
+    /* Heller Text auf dunklem Grund */
+    line-height: 1.4;
+}
+
+/* CSS-Klasse, die per JavaScript hinzugefügt wird, um das Feld zu öffnen */
+.feature-item.open .feature-text {
+    max-height: 200px;
+    /* Groß genug für den Fließtext */
+    opacity: 1;
+    /* Sichtbar machen */
+}
+
+/* Das Plus-Icon rotiert leicht, wenn es geöffnet ist */
+.feature-item.open svg {
+    transform: rotate(45deg);
+    color: var(--dark-creme);
+    transition: transform 1s ease, color 1s ease;
+}
+
+.feature-item svg {
+    transition: transform 1s ease, color 1s ease;
+}
+
+
+
+
+
+
+
+/* --- Modell Teaser Sektion --- */
+.id-comparison {
+    background-color: #ffffff;
+    /* Leicht abgesetzt vom hellgrauen Hintergrund */
+    border-radius: 30px;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    padding: 6rem 2rem !important;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: #6e6e73;
+    margin-bottom: 4rem;
+}
+
+/* Das Grid-System für die 2 neuen Zielgruppen */
+.model-teaser-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.model-card {
+    background-color: var(--bg-color);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.model-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
+
+/* Visueller Header der Karte */
+.model-image-placeholder {
+    padding: 30px;
+    background: linear-gradient(135deg, #f5f5f7 0%, #e8e8ed 100%);
+    position: relative;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.model-badge {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    background-color: #bf4800;
+    /* Apple-typisches Orange für Neuheiten */
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.model-image-placeholder h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+    color: var(--text-color);
+}
+
+.model-tagline {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--accent-color);
+}
+
+/* Text-Bereich unter dem Header */
+.model-info {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-grow: 1;
+}
+
+.model-description {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #1d1d1f;
+}
+
+.model-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: opacity 0.2s;
+}
+
+.model-link:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}
+
+
+
+
+
+
+
+/* =========================================
+   Tablet Anpassungen (ab 768px)
+   ========================================= */
+@media screen and (min-width: 768px) {
+    h1 {
+        font-size: 4.5rem;
+    }
+
+    h2 {
+        font-size: 3rem;
+    }
+
+    .h2_carousel {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .navbar {
+        justify-content: center;
+        gap: 20px;
+        /* Abstand zwischen dem Logo, den Menüpunkten und den rechten Icons */
+        padding: 1rem 5%;
+        margin: 0 15px;
+    }
+
+    .features-grid {
+        /* flex-direction: row;
+        justify-content: space-between;
+        gap: 24px;
+        Fester Abstand zwischen den Karten auf Desktop, vorhin 5vh */
+
+        flex-direction: row;
+        /* Nebeneinander anordnen */
+        flex-wrap: wrap;
+        /* Erlaubt automatischen Zeilenumbruch beim Verkleinern! */
+        justify-content: center;
+    }
+
+    .feature-card {
+        flex: 1 1 calc(25% - 24px);
+        /* Berechnet die Breite flexibel: 
+           Bei 4 Karten minus Abstände nutzen wir 'calc'. 
+           Die Karte darf schrumpfen (1), wachsen (1) und startet flexibel. */
+        min-width: 220px;
+        /* Verhindert, dass die Karten zu extrem gequetscht werden */
+    }
+
+    .stats-grid {
+        flex-direction: row;
+        justify-content: space-around;
+        margin-top: 10rem;
+        gap: 5vh;
+        /*Lücken zwischen einzelnen Stats voneinander*/
+    }
+
+    .hero {
+        position: relative;
+        height: 100vh;
+        background-image: url("/Bilder/teaser.png");
+        /* Großes Desktop-Bild */
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        /* Flexbox aktivieren, um den Text oben mittig zu platzieren */
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 150px;
+    }
+
+    /* WICHTIG: Das mobile Zusatzbild auf dem Desktop komplett unsichtbar machen */
+    .hero::before {
+        display: none;
+    }
+
+    .hero_family {
+        position: relative;
+        height: 100vh;
+        background-image: url("/Bilder/family_teaser.png");
+        /* Großes Desktop-Bild */
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        /* Flexbox aktivieren, um den Text oben mittig zu platzieren */
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 150px;
+    }
+
+    .hero_family::before {
+        display: none;
+    }
+
+    /* Der Text-Container wird auf dem Desktop transparent, damit das Bild durchscheint */
+    .hero-content {
+        background: transparent;
+        padding: 0;
+    }
+
+    .flex-spalten {
+        flex-direction: row;
+        /* Spalten untereinander anordnen */
+    }
+
+    .spalte-links,
+    .spalte-rechts {
+        flex: 1;
+        /* Beide Spalten nehmen gleich viel Platz ein */
+    }
+
+    .spalte-links {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        /* Zentriert die Buttons untereinander in der Spalte */
+        padding-left: 15%;
+
+        /*  Buttons linksbündig anstatt zentriert ab Tabletgröße */
+        align-items: start;
+    }
+
+    .spalte-rechts img {
+        padding-top: 15%;
+        padding-bottom: 15%;
+    }
+
+    .stat-item .number {
+        font-size: 4rem;
+    }
+
+    .space_left {
+        /*Abstand von links für h1-Elemente*/
+        padding-left: 18%;
+        padding-right: 18%;
+    }
+
+
+    .model-teaser-grid {
+        flex-direction: row;
+        /* Nebeneinander auf Tablet & Desktop */
+    }
+
+    .model-card {
+        width: 50%;
+        /* Jede Karte nimmt exakt die Hälfte ein */
+    }
+
+    .model-image-placeholder {
+        min-height: 220px;
+        /* Mehr Platz für eventuelle Bilder */
+    }
+
+    /* =========================================
+   Desktop Anpassungen (ab 1024px)
+   ========================================= */
+    @media screen and (min-width: 1024px) {
+        .h2_carousel {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 3rem;
+        }
+
+        .burger {
+            display: none;
+        }
+
+        .nav-icons-right {
+            margin-left: 0;
+            /* Setzt den mobilen Rechts-Schub auf Desktop zurück */
+            margin-right: 0;
+            gap: 20px;
+            /* Abstand zwischen Lupe und Tasche */
+        }
+
+        .nav-links {
+            position: static;
+            height: auto;
+            background-color: transparent;
+            flex-direction: row;
+            width: auto;
+            transform: translateX(0%);
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            color: #f5f5f7;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .footer2 ul {
+            flex-direction: row;
+        }
+
+        .stat-item .number {
+            font-size: 6rem;
+        }
+
+        .stats-grid {
+            flex-direction: row;
+            justify-content: space-around;
+            margin-top: 10rem;
+            gap: 5vh;
+            /*Lücken zwischen einzelnen Stats voneinander, normal 30vh und space-around*/
+        }
+    }
+}

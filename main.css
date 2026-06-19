@@ -1060,7 +1060,6 @@ p {
         gap: 20px;
         /* Abstand zwischen dem Logo, den Menüpunkten und den rechten Icons */
         padding: 1rem 5%;
-        margin: 0 15px;
     }
 
     .features-grid {

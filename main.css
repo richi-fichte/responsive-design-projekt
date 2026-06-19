@@ -213,7 +213,9 @@ p {
     transition: all 0.3s ease;
 }
 
-.hero {
+.hero,
+.hero_family,
+.hero_pro {
     display: flex;
     flex-direction: column;
     /* Stapelt Bild und Text untereinander */
@@ -235,16 +237,6 @@ p {
     background-size: cover;
 }
 
-.hero_family {
-    display: flex;
-    flex-direction: column;
-    /* Stapelt Bild und Text untereinander */
-    margin-top: 55px;
-    /* Platz für die fixierte Navigationsleiste */
-    background-color: var(--bg-color);
-}
-
-/* Das Teaserbild wird auf dem Handy als eigenständiger, oberer Block dargestellt */
 .hero_family::before {
     content: "";
     display: block;
@@ -252,6 +244,18 @@ p {
     height: 100vh;
     /* Das Bild nimmt auf dem Handy die halbe Bildschirmhöhe ein */
     background-image: url('Bilder/family_teaser_mobile.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.hero_pro::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100vh;
+    /* Das Bild nimmt auf dem Handy die halbe Bildschirmhöhe ein */
+    background-image: url('Bilder/pro_teaser_mobile.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -1092,6 +1096,13 @@ p {
         /*Lücken zwischen einzelnen Stats voneinander*/
     }
 
+    /* WICHTIG: Das mobile Zusatzbild auf dem Desktop komplett unsichtbar machen */
+    .hero::before,
+    .hero_family::before,
+    .hero_pro::before {
+        display: none;
+    }
+
     .hero {
         position: relative;
         height: 100vh;
@@ -1107,11 +1118,6 @@ p {
         align-items: center;
         flex-direction: column;
         padding-top: 150px;
-    }
-
-    /* WICHTIG: Das mobile Zusatzbild auf dem Desktop komplett unsichtbar machen */
-    .hero::before {
-        display: none;
     }
 
     .hero_family {
@@ -1131,8 +1137,21 @@ p {
         padding-top: 150px;
     }
 
-    .hero_family::before {
-        display: none;
+    .hero_pro {
+        position: relative;
+        height: 100vh;
+        background-image: url("Bilder/pro_teaser.png");
+        /* Großes Desktop-Bild */
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        /* Flexbox aktivieren, um den Text oben mittig zu platzieren */
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 150px;
     }
 
     /* Der Text-Container wird auf dem Desktop transparent, damit das Bild durchscheint */

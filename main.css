@@ -888,6 +888,18 @@ p {
     box-shadow: var(--shadow);
 }
 
+/* Weiches Overlay, falls die weißen Schriften auf hellen Bildern schwer lesbar sind */
+.model-image-placeholder::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.5) 100%);
+    z-index: -1; /* Liegt hinter dem Text, aber vor dem Bild */
+}
+
 /* Visueller Header der Karte */
 .model-image-placeholder {
     padding: 30px;
@@ -897,6 +909,16 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    background-size: cover;
+    /* Bild füllt das gesamte Feld ohne Verzerrung aus */
+    background-position: center;
+    /* Bild wird perfekt mittig zentriert */
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.bg-teaser-family {
+    background-image: url('Bilder/family_teaser_mobile.png'); /* Pfad zum Family-Bild */
 }
 
 .model-badge {
@@ -918,7 +940,8 @@ p {
     font-size: 1.8rem;
     font-weight: 600;
     margin-bottom: 2px;
-    color: var(--text-color);
+    color: var(--white);    
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Bessere Lesbarkeit */
 }
 
 .model-tagline {

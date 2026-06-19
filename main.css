@@ -297,7 +297,8 @@ p {
 }
 
 /* 1. Die Hauptsektion vorbereiten */
-.stats {
+.stats,
+.stats_family {
     position: relative;
     /* WICHTIG: Erlaubt dem ::before-Element, sich hieran auszurichten */
     min-height: 100vh;
@@ -338,8 +339,32 @@ p {
     /* Schiebt das Bild auf Ebene 1 */
 }
 
+.stats_family::before {
+    content: "";
+    /* ERFORDERLICH: Aktiviert das Pseudoelement überhaupt erst */
+
+    /* Das Bild über die komplette Fläche der .stats-Sektion spannen */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* Das Bild einbinden und skalieren */
+    background-image: url("Bilder/family_bg_stats.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    /* Transparenz und Bildebenen-Anordnung */
+    opacity: 0.15;
+    /* Transparenz des Bildes */
+    z-index: 1;
+    /* Schiebt das Bild auf Ebene 1 */
+}
+
 /* Den Text in Sicherheit bringen, damit er VOR dem Bild liegt */
-.stats .container {
+.stats .container .stats_family {
     position: relative;
     z-index: 2;
     /* Liegt mit Ebene 2 über dem Bild (z-index: 1) und bleibt voll lesbar */
@@ -446,16 +471,29 @@ p {
     align-items: center;
     flex-direction: column;
     /* Spalten untereinander anordnen */
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+}
+
+.spalte-rechts {
+    display: flex;
+    justify-content: center;
+    /* Zentriert horizontal */
+    align-items: center;
+    /* Zentriert vertikal */
+    width: 100%;
 }
 
 .spalte-rechts img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* Füllt den Bereich aus, ohne das Bild zu verzerren */
+    width: 100vh;
+    height: auto;
+    /* Behält das originale Seitenverhältnis bei */
+    object-fit: contain;
+    margin: 0 auto;
+    /* Sichert die horizontale Zentrierung */
     object-position: center;
     /* Zentriert das Bild im Container */
-    padding-bottom: 15%;
+    align-items: center;
 }
 
 .btn-links {
@@ -768,6 +806,8 @@ p {
     align-items: center;
 }
 
+
+
 /* Verhindert das Scrollen der Hauptseite , wenn Burgermenu geöffnet*/
 .no-scroll {
     overflow: hidden;
@@ -896,8 +936,9 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
-    z-index: -1; /* Liegt hinter dem Text, aber vor dem Bild */
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+    z-index: -1;
+    /* Liegt hinter dem Text, aber vor dem Bild */
 }
 
 /* Visueller Header der Karte */
@@ -918,11 +959,18 @@ p {
 }
 
 .bg-teaser-family {
-    background-image: url('Bilder/family_teaser_mobile.png'); /* Pfad zum Family-Modell-Bild */
+    background-image: url('Bilder/family_teaser_mobile.png');
+    /* Pfad zum Family-Modell-Bild */
 }
 
 .bg-teaser-classic {
-    background-image: url('Bilder/frontal.png'); /* Pfad zum Classic-Modell-Bild */
+    background-image: url('Bilder/frontal.png');
+    /* Pfad zum Classic-Modell-Bild */
+}
+
+.bg-teaser-pro {
+    background-image: url('Bilder/pro_teaser_mobile.png');
+    /* Pfad zum Pro-Modell-Bild */
 }
 
 .model-badge {
@@ -944,8 +992,9 @@ p {
     font-size: 1.8rem;
     font-weight: 600;
     margin-bottom: 2px;
-    color: var(--white);    
-    text-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Bessere Lesbarkeit */
+    color: var(--white);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Bessere Lesbarkeit */
 }
 
 .model-tagline {
@@ -1115,9 +1164,8 @@ p {
         align-items: start;
     }
 
-    .spalte-rechts img {
-        padding-top: 15%;
-        padding-bottom: 15%;
+    .spalte-rechts {
+        align-items: center;
     }
 
     .stat-item .number {

@@ -28,6 +28,9 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
+    width: 100%; /* Das zwingt den Container auf die volle Breite */
+    padding: 0 20px; /* Schützt Inhalte davor, am Handy den Rand zu berühren */
+    box-sizing: border-box; /* Wichtig in Kombination mit padding */
 }
 
 .section-padding {
@@ -69,14 +72,14 @@ p {
 
 .miniheader_light {
     color: var(--white);
-    padding-top: 5%;
-    padding-bottom: 5%;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }
 
 .miniheader_dark {
     color: var(--text-color);
-    padding-top: 5%;
-    padding-bottom: 5%;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }
 
 .caption_light {
@@ -302,7 +305,8 @@ p {
 
 /* 1. Die Hauptsektion vorbereiten */
 .stats,
-.stats_family {
+.stats_family,
+.stats_pro {
     position: relative;
     /* WICHTIG: Erlaubt dem ::before-Element, sich hieran auszurichten */
     min-height: 100vh;
@@ -318,7 +322,7 @@ p {
     /* Verhindert, dass das skalierte Bild aus der Sektion herausragt */
 }
 
-/* 2. Das Pseudoelement für das Hintergrundbild einrichten */
+/* Das Pseudoelement für das Hintergrundbild einrichten */
 .stats::before {
     content: "";
     /* ERFORDERLICH: Aktiviert das Pseudoelement überhaupt erst */
@@ -367,8 +371,35 @@ p {
     /* Schiebt das Bild auf Ebene 1 */
 }
 
+.stats_pro::before {
+    content: "";
+    /* ERFORDERLICH: Aktiviert das Pseudoelement überhaupt erst */
+
+    /* Das Bild über die komplette Fläche der .stats-Sektion spannen */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* Das Bild einbinden und skalieren */
+    background-image: url("Bilder/pro_von\ oben_quer.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    /* Transparenz und Bildebenen-Anordnung */
+    opacity: 0.15;
+    /* Transparenz des Bildes */
+    z-index: 1;
+    /* Schiebt das Bild auf Ebene 1 */
+}
+
 /* Den Text in Sicherheit bringen, damit er VOR dem Bild liegt */
-.stats .container .stats_family {
+.stats,
+.stats_family,
+.stats_pro,
+.container {
     position: relative;
     z-index: 2;
     /* Liegt mit Ebene 2 über dem Bild (z-index: 1) und bleibt voll lesbar */
@@ -377,7 +408,7 @@ p {
 .stats-grid {
     display: flex;
     flex-direction: column;
-    gap: 5vh;
+    gap: 2rem;
     /*Lücken zwischen einzelnen Stats voneinander, 5vh*/
     margin-top: 3rem;
     margin-left: 3rem;
@@ -434,17 +465,29 @@ p {
     color: var(--text-color);
 }
 
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Zentriert alles horizontal */
+    text-align: center;
+    flex: 1;
+    /* Zwingt alle 3 Items auf exakt die gleiche Breite (je ein Drittel) */
+    padding: 0 10px;
+    /* Ein kleiner Puffer, damit der Text am Handy nicht den Rand berührt */
+}
+
 .stat-item .number {
-    display: block;
+    text-align: center;
     font-size: 4rem;
     font-weight: 700;
     color: var(--text-color);
     font-variant-numeric: tabular-nums;
     /*einheitliche Zahlengröße, damit Container nicht "zittern" oder verschieben während dem aufzählen*/
-    width: 140px;
+    /* width: 140px;
     /* Festes Gehäuse für die Zahl (breit genug für 3 Ziffern) */
     margin: 0 auto;
-    /* Zentriert die Zahl innerhalb ihres stat-items */
+    /*Zentriert die Zahl innerhalb ihres stat-items */
 }
 
 /* --- Hintergrundbild unter: Performance bis aufs Äußerste. --- */
@@ -486,10 +529,11 @@ p {
     align-items: center;
     /* Zentriert vertikal */
     width: 100%;
+
 }
 
 .spalte-rechts img {
-    width: 100vh;
+    max-width: 100%;
     height: auto;
     /* Behält das originale Seitenverhältnis bei */
     object-fit: contain;
@@ -498,6 +542,7 @@ p {
     object-position: center;
     /* Zentriert das Bild im Container */
     align-items: center;
+    display: block;
 }
 
 .btn-links {
@@ -825,9 +870,9 @@ p {
     margin-bottom: 1.5rem;
     display: flex;
     flex-direction: column;
+
 }
 
-/* Wir setzen die Ränder des Buttons zurück, da der Abstand nun über den Container geregelt wird */
 .feature-item .btn-links {
     margin: 0 !important;
     width: 100%;
@@ -877,12 +922,6 @@ p {
 .feature-item svg {
     transition: transform 1s ease, color 1s ease;
 }
-
-
-
-
-
-
 
 /* --- Modell Teaser Sektion --- */
 .id-comparison {
@@ -1035,12 +1074,6 @@ p {
     opacity: 0.8;
 }
 
-
-
-
-
-
-
 /* =========================================
    Tablet Anpassungen (ab 768px)
    ========================================= */
@@ -1086,14 +1119,6 @@ p {
            Die Karte darf schrumpfen (1), wachsen (1) und startet flexibel. */
         min-width: 220px;
         /* Verhindert, dass die Karten zu extrem gequetscht werden */
-    }
-
-    .stats-grid {
-        flex-direction: row;
-        justify-content: space-around;
-        margin-top: 10rem;
-        gap: 5vh;
-        /*Lücken zwischen einzelnen Stats voneinander*/
     }
 
     /* WICHTIG: Das mobile Zusatzbild auf dem Desktop komplett unsichtbar machen */
@@ -1158,28 +1183,6 @@ p {
     .hero-content {
         background: transparent;
         padding: 0;
-    }
-
-    .flex-spalten {
-        flex-direction: row;
-        /* Spalten untereinander anordnen */
-    }
-
-    .spalte-links,
-    .spalte-rechts {
-        flex: 1;
-        /* Beide Spalten nehmen gleich viel Platz ein */
-    }
-
-    .spalte-links {
-        display: flex;
-        flex-direction: column;
-        align-items: start;
-        /* Zentriert die Buttons untereinander in der Spalte */
-        padding-left: 15%;
-
-        /*  Buttons linksbündig anstatt zentriert ab Tabletgröße */
-        align-items: start;
     }
 
     .spalte-rechts {
@@ -1270,12 +1273,35 @@ p {
             font-size: 6rem;
         }
 
+        .flex-spalten {
+            flex-direction: row;
+            /* Spalten untereinander anordnen */
+        }
+
         .stats-grid {
             flex-direction: row;
-            justify-content: space-around;
+            align-items: flex-start;
+            /* Sorgt dafür, dass alle Texte oben auf gleicher Höhe anfangen */
             margin-top: 10rem;
-            gap: 5vh;
+            gap: 2rem;
             /*Lücken zwischen einzelnen Stats voneinander, normal 30vh und space-around*/
+        }
+
+        .spalte-links,
+        .spalte-rechts {
+            flex: 1;
+            /* Beide Spalten nehmen gleich viel Platz ein */
+        }
+
+        .spalte-links {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            /* Zentriert die Buttons untereinander in der Spalte */
+            padding-left: 15%;
+
+            /*  Buttons linksbündig anstatt zentriert ab Tabletgröße */
+            align-items: start;
         }
     }
 }

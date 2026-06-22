@@ -858,16 +858,14 @@ p {
 }
 
 .spalte-links {
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 
     /* Zentriert die Buttons mobil untereinander */
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
-
 
 /* Verhindert das Scrollen der Hauptseite , wenn Burgermenu geöffnet*/
 .no-scroll {
@@ -1225,6 +1223,11 @@ p {
     .model-image-placeholder {
         min-height: 220px;
         /* Mehr Platz für eventuelle Bilder */
+    }
+
+    .spalte-links {
+        margin-top: 5rem;
+        margin-bottom: 5rem;
     }
 
     /* =========================================

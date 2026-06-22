@@ -17,16 +17,15 @@ function goToSlide(index) {
   });
 }
 
-// Scroll-Event-Listener für die Dots:
+let currentDotIndex = 0; // Speichert den aktuell aktiven Punkt
+
 if (carousel) {
   carousel.addEventListener('scroll', () => {
-    // Der echte Mittelpunkt des sichtbaren Carousel-Fensters
     const center = carousel.scrollLeft + carousel.clientWidth / 2;
     let bestIndex = 0;
     let bestDistance = Infinity;
 
     slides.forEach((slide, index) => {
-      // Der echte Mittelpunkt des jeweiligen Bildes
       const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
       const distance = Math.abs(slideCenter - center);
       if (distance < bestDistance) {
@@ -34,7 +33,13 @@ if (carousel) {
         bestIndex = index;
       }
     });
-    setActiveDot(bestIndex);
+
+    // Nur wenn das Bild wirklich gewechselt hat:
+    if (bestIndex !== currentDotIndex) {
+      currentDotIndex = bestIndex;
+      setActiveDot(bestIndex);
+      autoplay(); // <-- Fix: Setzt den Timer beim Wischen zurück
+    }
   }, { passive: true });
 }
 
@@ -50,13 +55,13 @@ dots.forEach((dot, i) => dot.addEventListener('click', () => {
 prev?.addEventListener('click', () => {
   const current = dots.findIndex(d => d.classList.contains('active'));
   goToSlide(Math.max(0, current - 1));
-  autoplay(); 
+  autoplay();
 });
 
 next?.addEventListener('click', () => {
   const current = dots.findIndex(d => d.classList.contains('active'));
   goToSlide(Math.min(slides.length - 1, current + 1));
-  autoplay(); 
+  autoplay();
 });
 
 let carouselTimer;
@@ -69,24 +74,6 @@ function autoplay() {
   }, 6000); // = alle 6 Sekunden bewegt sich die Bildergallerie
 }
 autoplay();
-
-if (carousel) {
-  carousel.addEventListener('scroll', () => {
-    const center = carousel.scrollLeft + carousel.clientWidth / 2;
-    let bestIndex = 0;
-    let bestDistance = Infinity;
-    slides.forEach((slide, index) => {
-      const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
-      const distance = Math.abs(slideCenter - center);
-      if (distance < bestDistance) {
-        bestDistance = distance;
-        bestIndex = index;
-      }
-    });
-    setActiveDot(bestIndex);
-  }, { passive: true });
-}
-
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -182,26 +169,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   counters.forEach(counter => counterObserver.observe(counter));
 
-
-
-
-
-
-  // 3. Apple Feature Accordion (Klickbare Infoboxen)
+  // Klickbare Infoboxen
   const featureButtons = document.querySelectorAll('.feature-item .btn-links');
 
   featureButtons.forEach(button => {
     button.addEventListener('click', () => {
       const currentItem = button.closest('.feature-item');
-      
+
       // Prüft, ob dieses Feld schon offen ist
       const isOpen = currentItem.classList.contains('open');
-      
+
       // Schließt alle anderen eventuell offenen Textfelder (genau wie bei Apple)
       document.querySelectorAll('.feature-item').forEach(item => {
         item.classList.remove('open');
       });
-      
+
       // Wenn es nicht offen war, öffne es jetzt
       if (!isOpen) {
         currentItem.classList.add('open');

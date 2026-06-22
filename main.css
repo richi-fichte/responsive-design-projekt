@@ -28,9 +28,12 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    width: 100%; /* Das zwingt den Container auf die volle Breite */
-    padding: 0 20px; /* Schützt Inhalte davor, am Handy den Rand zu berühren */
-    box-sizing: border-box; /* Wichtig in Kombination mit padding */
+    width: 100%;
+    /* Das zwingt den Container auf die volle Breite */
+    padding: 0 20px;
+    /* Schützt Inhalte davor, am Handy den Rand zu berühren */
+    box-sizing: border-box;
+    /* Wichtig in Kombination mit padding */
 }
 
 .section-padding {
@@ -505,6 +508,15 @@ p {
     /* Entfernt den standardmäßigen kleinen Whitespace unter Bildern */
     object-fit: cover;
     /* Schneidet das Bild sauber zu, falls Höhenbegrenzungen ins Spiel kommen */
+}
+
+.hero-video {
+    width: 100%;
+    /* Nutzt die volle Breite des Containers */
+    height: auto;
+    /* Behält das richtige Seitenverhältnis bei */
+    display: block;
+    /* Verhindert unschöne Abstände nach unten */
 }
 
 /*Part unter: "Sieh es dir genauer an."*/
